@@ -5,7 +5,7 @@ __author__ = "Miguel Martin"
 __version__ = "1"
 
 import numpy as np
-from engine.utils import (
+from pyquanttrade.engine.utils import (
     max_drawdown_ratio,
     max_drawdown_value,
     safe_div,
@@ -13,11 +13,11 @@ from engine.utils import (
     safe_sum,
     safe_mean,
 )
-from engine.test_summary import TestSummary
-from engine.stats.daily_stats import DailyStats
-from engine.stats.summary_stats import SystemSummaryStats
-from engine.stats.trade_stats import TradeSummaryStats
-from engine.trade import TradeList
+from pyquanttrade.engine.test_summary import TestSummary
+from pyquanttrade.engine.stats.daily_stats import DailyStats
+from pyquanttrade.engine.stats.summary_stats import SystemSummaryStats
+from pyquanttrade.engine.stats.trade_stats import TradeSummaryStats
+from pyquanttrade.engine.trade import TradeList
 
 
 class TestResult:

@@ -2,13 +2,10 @@
 
 __author__ = "Miguel Martin"
 __version__ = "1"
-from trading.features import functions, indicators
-from trading.market import marketData
-from trading.engine.commands import backtest
-from itertools import product, chain
+
+from pyquanttrade.market import marketData
 import logging
-from pandas import DataFrame as df
-import numpy as np
+import plotly.graph_objects as go
 
 logger = logging.getLogger(__name__)
 
@@ -139,8 +136,7 @@ class Policy:
 
 
 def plot_activity_list(activity_list):
-    import plotly.graph_objects as go
-    import plotly.express as express
+    
     fig = go.Figure()
 
     #Decoding signal list as separate lists

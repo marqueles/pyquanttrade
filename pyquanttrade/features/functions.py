@@ -118,7 +118,7 @@ def percentage_weighting_ma(days, last_weight=1, step=0.5):
     return return_function
 
 
-def triangular_weighting_ma(days, shape="linear"):
+def triangular_weighting_ma(days=10, shape="linear"):
     def f(w):
         def g(x):
             return (w * x).sum() / sum(w)

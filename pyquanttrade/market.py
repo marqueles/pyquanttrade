@@ -21,36 +21,8 @@ class marketData(object):
     def get_data(ticker, init_date, end_date):
         quandl.ApiConfig.api_key="eStMsG_f_7uLGBivEyhy"
         table_name = 'SHARADAR/SEP'
-        ti = ticker
         filter_date = { 'gte': init_date, 'lte':end_date}
-        source = quandl.get_table(table_name,  date = filter_date, ticker=ti, paginate=True)
-
-        """"
-        es = Elasticsearch(["http://34.242.141.184:9200"])
-        stock_filter = {"match_phrase": {"TICKER": ticker}}
-        date_filter = {"range": {"DATE": {"gte": init_date, "lte": end_date}}}
-        query3 = {"query": {"bool": {"must": [date_filter, stock_filter]}}}
-        res = es.search(
-            index="intrinio-index", doc_type="intrinio-type", body=query3, params={'size':3650}
-        )
-        # Get open, close, high and low series and transform to a dataframe:
-        def show_data(i):
-            return {
-                "date": i["_source"]["DATE"],
-                "open": float(i["_source"]["ADJ_OPEN"]),
-                "high": float(i["_source"]["ADJ_HIGH"]),
-                "low": float(i["_source"]["ADJ_LOW"]),
-                "close": float(i["_source"]["ADJ_CLOSE"]),
-                "volume": float(i["_source"]["ADJ_VOLUME"]),
-                "open_na": float(i["_source"]["OPEN"]),
-                "high_na": float(i["_source"]["HIGH"]),
-                "low_na": float(i["_source"]["LOW"]),
-                "close_na": float(i["_source"]["CLOSE"]),
-                "volume_na": float(i["_source"]["VOLUME"]),
-            }
-
-        data = [show_data(i) for i in res["hits"]["hits"]]
-        """
+        source = quandl.get_table(table_name,  date = filter_date, ticker=ticker, paginate=True)
         source = pd.DataFrame(source).drop_duplicates("date")
         source["date"] = pd.to_datetime(source["date"])
         source = source.sort_values(by="date")
@@ -72,33 +44,12 @@ class marketData(object):
         return data
 
     @staticmethod
-    def get_data_lt(ticker, end_date, days):
-
-        es = Elasticsearch(["http://34.242.141.184:9200"])
-        stock_filter = {"match_phrase": {"TICKER": ticker}}
-        date_filter = {"range": {"DATE": {"lte": end_date}}}
-        query3 = {"query": {"bool": {"must": [date_filter, stock_filter]}}}
-        res = es.search(
-            index="intrinio-index", doc_type="intrinio-type", body=query3, params={'size':days}
-        )
-        # Get open, close, high and low series and transform to a dataframe:
-        def show_data(i):
-            return {
-                "date": i["_source"]["DATE"],
-                "open": float(i["_source"]["ADJ_OPEN"]),
-                "high": float(i["_source"]["ADJ_HIGH"]),
-                "low": float(i["_source"]["ADJ_LOW"]),
-                "close": float(i["_source"]["ADJ_CLOSE"]),
-                "volume": float(i["_source"]["ADJ_VOLUME"]),
-                "open_na": float(i["_source"]["OPEN"]),
-                "high_na": float(i["_source"]["HIGH"]),
-                "low_na": float(i["_source"]["LOW"]),
-                "close_na": float(i["_source"]["CLOSE"]),
-                "volume_na": float(i["_source"]["VOLUME"]),
-            }
-
-        data = [show_data(i) for i in res["hits"]["hits"]]
-        source = pd.DataFrame(data).drop_duplicates("date")
+    def get_data_lt(ticker, init_date):
+        quandl.ApiConfig.api_key="eStMsG_f_7uLGBivEyhy"
+        table_name = 'SHARADAR/SEP'
+        filter_date = {'lte':init_date}
+        source = quandl.get_table(table_name,  date = filter_date, ticker=ticker, paginate=True)
+        source = pd.DataFrame(source).drop_duplicates("date")
         source["date"] = pd.to_datetime(source["date"])
         source = source.sort_values(by="date")
         source = source.set_index("date")

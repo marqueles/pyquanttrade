@@ -7,7 +7,7 @@ __version__ = "1"
 import pandas as pd
 import numpy as np
 
-from trading.engine.utils import (
+from pyquanttrade.engine.utils import (
     max_drawdown_ratio,
     max_drawdown_value,
     safe_div,

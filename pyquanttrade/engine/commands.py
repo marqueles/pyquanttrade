@@ -7,9 +7,9 @@
 __author__ = "Miguel Martin"
 __version__ = "1"
 
-from trading.market import marketData
-from trading.engine.trade import TradeList
-from trading.engine.test_result import TestResult
+from pyquanttrade.market import marketData
+from pyquanttrade.engine.trade import TradeList
+from pyquanttrade.engine.test_result import TestResult
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
