@@ -7,19 +7,15 @@ __version__ = "1"
 import pandas as pd
 import numpy as np
 import altair as alt
-from elasticsearch import Elasticsearch
 import scipy.stats as stats
 import scipy.spatial.distance as distance
-import time
-import quandl
-
-
-
+import time, quandl
+from decouple import config
 class marketData(object):
 
     @staticmethod
     def get_data(ticker, init_date, end_date):
-        quandl.ApiConfig.api_key="eStMsG_f_7uLGBivEyhy"
+        quandl.ApiConfig.api_key=config("QUANDL_API_KEY")
         table_name = 'SHARADAR/SEP'
         filter_date = { 'gte': init_date, 'lte':end_date}
         source = quandl.get_table(table_name,  date = filter_date, ticker=ticker, paginate=True)
@@ -45,7 +41,7 @@ class marketData(object):
 
     @staticmethod
     def get_data_lt(ticker, init_date):
-        quandl.ApiConfig.api_key="eStMsG_f_7uLGBivEyhy"
+        quandl.ApiConfig.api_key=config("QUANDL_API_KEY")
         table_name = 'SHARADAR/SEP'
         filter_date = {'gte':init_date}
         source = quandl.get_table(table_name,  date = filter_date, ticker=ticker, paginate=True)
