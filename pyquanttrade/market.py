@@ -47,7 +47,7 @@ class marketData(object):
     def get_data_lt(ticker, init_date):
         quandl.ApiConfig.api_key="eStMsG_f_7uLGBivEyhy"
         table_name = 'SHARADAR/SEP'
-        filter_date = {'lte':init_date}
+        filter_date = {'gte':init_date}
         source = quandl.get_table(table_name,  date = filter_date, ticker=ticker, paginate=True)
         source = pd.DataFrame(source).drop_duplicates("date")
         source["date"] = pd.to_datetime(source["date"])

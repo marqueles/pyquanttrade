@@ -45,7 +45,7 @@ def backtest(
     for ticker in tickers:
         policies[ticker] = policy_class
         logging.info(policy_class.name)
-        data = marketData.get_data_n_tries(ticker, first_day, stop_at, n_tries=5)
+        data = marketData.get_data(ticker, first_day, stop_at)
         data_sim = data.loc[data.index >= start_at]
 
         if not data_sims:
