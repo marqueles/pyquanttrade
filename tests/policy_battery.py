@@ -44,3 +44,38 @@ class test_policy_1(Policy):
         # option2 = downwards_turn(moving_average(30))
         # return apply_any([option1, option2])
         return option1
+
+class test_policy_2(Policy):
+
+    name = "long/short EMA crossover 10/40"
+    version = "1.0"
+
+    # stop loss parameters:
+    long_stop_loss = 0.5
+    short_stop_loss = 100
+    long_stop_loss_trailling = 100
+    short_stop_loss_trailling = 100
+
+    def description(self):
+        return "Estrategia de tipo moving average crossover. Inversión en largo cuando la SMA_10 supera SMA_40. Inversión en corto cuando la SMA_10 cae por debajo de SMA_40. Las posiciones corto/largo se cierran cuando se abren las contrarias."
+
+    @classmethod
+    def buy_long_when(self):
+        func1 = moving_average(10)
+        func2 = moving_average(40)
+        return cross_of_values(func1, func2)
+
+    #def sell_short_when(self):
+    #    func1 = moving_average(10)
+    #    func2 = moving_average(40)
+    #    return cross_of_values(func2, func1)
+    @classmethod
+    def close_long_when(self):
+        func1 = moving_average(10)
+        func2 = moving_average(40)
+        return cross_of_values(func2, func1)
+
+    #def close_short_when(self):
+    #    func1 = moving_average(10)
+    #    func2 = moving_average(40)
+    #    return cross_of_values(func1, func2)
