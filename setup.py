@@ -1,11 +1,10 @@
 import setuptools
 from setuptools import find_packages
 setuptools.setup(
-    name="trading",  # Replace with your own username
-    version="0.0.2",
+    name="pyquanttrade",  # Replace with your own username
+    version="0.0.1",
     author="Miguel Martin, Marcos Jimenez",
-    description="Library for backtesting algorithmic trading strategies",
-    url="https://github.com/pypa/sampleproject",
+    description="Library for backtesting algorithmic trading strategies using Quandl data",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -19,11 +18,7 @@ setuptools.setup(
         "datetime",
         "IPython",
         "altair",
-        "sklearn",
-        "elasticsearch",
         "scipy",
-        "ib_insync",
-        "pymongo",
-        "ray",
+        "quandl"
     ],
 )
