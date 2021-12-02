@@ -5,7 +5,8 @@ setuptools.setup(
     version="0.0.1",
     author="Miguel Martin, Marcos Jimenez",
     description="Library for backtesting algorithmic trading strategies using Quandl data",
-    packages=find_packages(),
+    
+    packages=['pyquanttrade','pyquanttrade.features', 'pyquanttrade.engine', 'pyquanttrade.engine.stats'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
