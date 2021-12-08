@@ -1,8 +1,8 @@
 import setuptools
 from setuptools import find_packages
 setuptools.setup(
-    name="pyquanttrade",  # Replace with your own username
-    version="0.0.1",
+    name="pyquanttrade",  
+    version="0.0.3",
     author="Miguel Martin, Marcos Jimenez",
     description="Library for backtesting algorithmic trading strategies using Quandl data",
     
@@ -15,11 +15,11 @@ setuptools.setup(
     python_requires=">=3.6",
     install_requires=[
         "pandas",
-        "numpy==1.19.0",
         "datetime",
         "IPython",
         "altair",
         "scipy",
-        "quandl"
+        "quandl",
+        "decouple"
     ],
 )
