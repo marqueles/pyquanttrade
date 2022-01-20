@@ -87,7 +87,7 @@ def TF_indicator(func):
 def unit_indicator(func):
     def return_function(when, ticker, trades, data):
         data1 = func(data)
-        column_name = "unit_indicator_" + str(data1.name)
+        column_name = f"unit_indicator_{data1.name}"
         if column_name not in data.columns:
             data[column_name] = data1 == 1
         return data[column_name][when]
@@ -99,7 +99,7 @@ def cross_of_values(func1, func2):
     def return_function(when, ticker, trades, data):
         data1 = func1(data)
         data2 = func2(data)
-        column_name = "diff_rows_" + str(data1.name) + "_vs_" + str(data2.name)
+        column_name = f"diff_rows_{data1.name}_vs_{data2.name}"
         if column_name not in data.columns:
             data[column_name] = 0
             data.loc[data1 <= data2, [column_name]] = 1
@@ -116,7 +116,7 @@ def greater_than(func1, func2):
     def return_function(when, ticker, trades, data):
         data1 = func1(data)
         data2 = func2(data)
-        column_name = str(data1.name) + "_greater_than_" + str(data2.name)
+        column_name = f"{data1.name}_greater_than_{data2.name}"
         if column_name not in data.columns:
             data[column_name] = 0
             data.loc[data1 > data2, [column_name]] = 1
@@ -130,7 +130,7 @@ def lower_than(func1, func2):
     def return_function(when, ticker, trades, data):
         data1 = func1(data)
         data2 = func2(data)
-        column_name = str(data1.name) + "_lower_than_" + str(data2.name)
+        column_name = f"{data1.name}_lower_than_{data2.name}"
         if column_name not in data.columns:
             data[column_name] = 0
             data.loc[data1 < data2, [column_name]] = 1
@@ -143,7 +143,7 @@ def lower_than(func1, func2):
 def upwards_turn(func1):
     def return_function(when, ticker, trades, data):
         data1 = func1(data)
-        column_name = "upwards_turn_" + str(data1.name)
+        column_name = f"upwards_turn_{data1.name}"
         if column_name not in data.columns:
             data[column_name] = 0
             data.loc[data1.diff(1) < 0, [column_name]] = -1
@@ -160,7 +160,7 @@ def upwards_turn(func1):
 def downwards_turn(func1):
     def return_function(when, ticker, trades, data):
         data1 = func1(data)
-        column_name = "downwards_turn_" + str(data1.name)
+        column_name = f"downwards_turn_{data1.name}"
         if column_name not in data.columns:
             data[column_name] = 0
             data.loc[data1.diff(1) < 0, [column_name]] = -1

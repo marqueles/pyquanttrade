@@ -1,16 +1,32 @@
-# -*- coding: utf-8 -*-
-
-__author__ = "Miguel Martin"
-__version__ = "1"
-
-from pyquanttrade.market import marketData
-import logging
-import plotly.graph_objects as go
-
-logger = logging.getLogger(__name__)
-
-
 class Policy:
+    """
+    Represents the mathematical rationale of a quantitative investing strategy
+
+    Attributes
+    ----------
+    long_stop_loss : float
+        Stop loss when the position is long
+    short_stop_loss : float
+        Stop loss when the position is short
+    long_stop_loss_trailling : float
+        Trailling stop loss when the position is long
+    short_stop_loss_trailling : float
+        Trailling stop loss when the position is short
+
+    Methods
+    -------
+    execute(cls, day, data, trades)
+        Returns the investing actions to take
+    sell_short_when()
+        Returns the function to analyse of a short position should be opened
+    buy_long_when()
+        Returns the function to analyse if a long position should be opened
+    close_short_when()
+        Returns the functions to analyse if a short position should be closed
+    close_long_when()
+        Returns the functions to analyse if a long position should be closed
+    """
+
     long_stop_loss = 1
     short_stop_loss = 1
     long_stop_loss_trailling = False
@@ -18,9 +34,6 @@ class Policy:
 
     ticker = "Hello"  # This remains so that the system does not break
 
-    # def buy_when():
-
-    # def sell_when():
     @staticmethod
     def sell_short_when():
         return lambda day, ticker, trades, data: False
@@ -58,6 +71,7 @@ class Policy:
             actions += ["Buy_long"]
 
         return actions
+
 
 def build_policy(policy_dict):
     created_policy = type(policy_dict["name"], (Policy,), {})
