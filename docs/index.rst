@@ -12,5 +12,5 @@ Welcome to pyquanttrade's documentation!
 
 Functions
 ---------
-.. automodule:: features.functions
+.. automodule:: pyquanttrade.features.functions
    :members:
