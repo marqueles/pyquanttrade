@@ -19,6 +19,7 @@ setuptools.setup(
         "IPython",
         "altair",
         "quandl",
-        "python-decouple"
+        "python-decouple",
+        'numpy'
     ],
 )
