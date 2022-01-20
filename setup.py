@@ -18,7 +18,6 @@ setuptools.setup(
         "datetime",
         "IPython",
         "altair",
-        "scipy",
         "quandl",
         "python-decouple"
     ],
