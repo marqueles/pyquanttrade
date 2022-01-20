@@ -14,7 +14,7 @@ def test_indicators():
     data = marketData.get_data("AAPL", "2010-01-01", "2021-01-01")
     test_func_1 = functions.special_k()
     test_func_2 = functions.triangular_weighting_ma()
-    cross_of_values_data = indicators.cross_of_values(test_func_1,test_func_2)(dat)
-    greater_than_data = indicators.greater_than(test_func_1,test_func_2)(data)
-    assert (len(cross_of_values_data) is not 0) and (cross_of_values_data is not None)
-    assert (len(greater_than_data) is not 0) and (greater_than_data is not None)
+    cross_of_values_data = indicators.cross_of_values(test_func_1,test_func_2)('2010-12-10',None,None,data)
+    greater_than_data = indicators.greater_than(test_func_1,test_func_2)('2010-12-10',None,None,data)
+    assert  cross_of_values_data is not None
+    assert greater_than_data is not None

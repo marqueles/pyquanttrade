@@ -1,4 +1,5 @@
 from pyquanttrade.engine.commands import backtest, backtest_and_visualise
+from tests.policy_battery import test_policy_1
 from tests.policy_battery import test_policy_2
 
 def test_backtest():

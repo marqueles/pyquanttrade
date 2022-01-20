@@ -5,7 +5,7 @@ from pyquanttrade.features.functions import (
     lower_bollinger_band,
     get_column,
 )
-from pyquanttrade.Policy import Policy
+from pyquanttrade.policy import Policy
 
 from pyquanttrade.features.indicators import cross_of_values
 

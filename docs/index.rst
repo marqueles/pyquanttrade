@@ -10,7 +10,4 @@ Welcome to pyquanttrade's documentation!
    :maxdepth: 3
    :caption: Modules:
 
-Functions
----------
-.. automodule:: pyquanttrade.features.functions
-   :members:
+   features

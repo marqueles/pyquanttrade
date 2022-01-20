@@ -1,17 +1,3 @@
-from pyquanttrade.Policy import (
-    plot_activity_list
-)
-from tests.policy_battery import test_policy_1
-
-def test_get_activity_list():
-    test_policy_1.get_activity_list("AAPL", "2010-01-01", "2011-12-31")
-
-
-def test_plot_activity_list():
-    act_list = test_policy_1.get_activity_list("AAPL", "2010-01-01", "2011-12-31")
-    plot_activity_list(act_list)
-
-
 """
 from trading.policy_analysis.searching_algos import grid_search, manhattan_distance
 from trading.policy_analysis.walkforward import sequential_backtesting
