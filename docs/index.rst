@@ -8,6 +8,5 @@ Welcome to pyquanttrade's documentation!
 
 .. toctree::
    :maxdepth: 3
-   :caption: Modules:
 
    features

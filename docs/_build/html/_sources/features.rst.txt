@@ -1,4 +1,5 @@
 Functions
----------
-.. automodule:: features.functions
-    :members:
+=========
+.. py:currentmodule: pyquanttrade.features
+.. automodule:: pyquanttrade.features.functions
+   :members:
