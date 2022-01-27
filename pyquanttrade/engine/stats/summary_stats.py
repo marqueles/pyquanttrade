@@ -19,9 +19,9 @@ from pyquanttrade.engine.utils import (
 class SystemSummaryStats:
 
     def __init__(self, data_stats):
-        self.ticker_stats = {ticker:self._get_system_table_stats(data_stats.global_ticker[ticker], data_stats.long_ticker[ticker], data_stats.short_ticker[ticker], data_stats.tickers_capital[ticker]) for ticker in data_stats.tickers}
+        self.ticker_stats = {ticker:self._get_system_table_stats(data_stats.long_ticker[ticker], data_stats.short_ticker[ticker], data_stats.global_ticker[ticker], data_stats.tickers_capital[ticker]) for ticker in data_stats.tickers}
         all_capital = np.sum(list(data_stats.tickers_capital.values()))
-        self.ticker_stats['all'] = self._get_system_table_stats(data_stats.global_all, data_stats.long_all, data_stats.short_all, all_capital)
+        self.ticker_stats['all'] = self._get_system_table_stats(data_stats.long_all, data_stats.short_all, data_stats.global_all, all_capital)
     
     def  _generate_system_stats(self, system_results, capital):
 

@@ -27,6 +27,8 @@ class Policy:
         Returns the functions to analyse if a long position should be closed
     """
 
+    plot_functions = []
+
     long_stop_loss = 1
     short_stop_loss = 1
     long_stop_loss_trailling = False

@@ -147,8 +147,9 @@ def backtest(
             remaining_capital[ticker] += money
 
             result.update(i, trade_list, ticker)
-        
-    return result
+    
+    #Data returns only works with one ticker, for visualization purposes
+    return result, data
 
 def plot_activity_list(activity_list):
     
@@ -198,7 +199,7 @@ def backtest_and_visualise(
 ):
     assert ticker is not list
 
-    result = backtest(
+    result, data = backtest(
         policy,
         ticker,
         start_at,
@@ -209,8 +210,6 @@ def backtest_and_visualise(
         level=logging.WARNING,
         time_buffer=250)
 
-    data = marketData.get_data(ticker, start_at, stop_at)
-
     for _, trade in result.data.trade_list.trades_closed.items():
         if trade.type == 'long':
             data.loc[trade.open_day,'signals'] = 'Buy_long'
@@ -220,5 +219,8 @@ def backtest_and_visualise(
             data.loc[trade.close_day,'signals'] = 'Close_short'
 
     fig = plot_activity_list(data)
+
+    for elem in policy.plot_functions:
+        fig.add_trace(go.Scatter(x = data.index, y = data[elem], mode='lines', name=elem, line={'width':1}))
 
     return result, fig
