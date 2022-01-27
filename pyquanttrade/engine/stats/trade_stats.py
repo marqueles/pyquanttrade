@@ -57,6 +57,13 @@ class TradeSummaryStats:
         self.long_trades['len trades'] = len_long_trades
         self.short_trades['len trades'] = len_short_trades
 
+        self.all_trades['Num of winning trades'] = len(long_win_trades) + len(short_win_trades)
+        self.all_trades['Num of losing trades'] = len(long_lose_trades) + len(short_lose_trades)
+        self.long_trades['Num of winning trades'] = len(long_win_trades)
+        self.long_trades['Num of losing trades'] = len(long_lose_trades)
+        self.short_trades['Num of winning trades'] = len(short_win_trades)
+        self.short_trades['Num of losing trades'] = len(short_lose_trades)
+
         # Profit of Winners:
         profit_long_win_trades = np.sum([trade.profit for trade in long_win_trades])
         profit_short_win_trades = np.sum([trade.profit for trade in short_win_trades])
@@ -403,6 +410,8 @@ class TradeSummaryStats:
     def toDataFrame(self):
         idx = [
             "Num of trades",
+            "Num of winning trades",
+            "Num of losing trades",
             "Profit of Winners",
             "Loss of Lossers",
             "Net profit",
