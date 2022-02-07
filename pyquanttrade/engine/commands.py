@@ -221,6 +221,7 @@ def backtest_and_visualise(
     fig = plot_activity_list(data)
 
     for elem in policy.plot_functions:
-        fig.add_trace(go.Scatter(x = data.index, y = data[elem], mode='lines', name=elem, line={'width':1}))
+        if elem in data.columns:
+            fig.add_trace(go.Scatter(x = data.index, y = data[elem], mode='lines', name=elem, line={'width':1}))
 
     return result, fig
