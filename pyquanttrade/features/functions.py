@@ -712,7 +712,7 @@ def MACD_signal(signal, slow_trend=26, fast_trend=12):
     def return_function(data):
         column_name = f"MACD_signal_{slow_trend}/{fast_trend}/{signal}"
         if column_name not in data.columns:
-            macd_line = MACD_line(slow_trend, fast_trend, signal)(data)
+            macd_line = MACD_line(slow_trend, fast_trend)(data)
             data[column_name] = exponential_smoothing(
                 days_to_constant(signal), target=macd_line.name
             )(data)
