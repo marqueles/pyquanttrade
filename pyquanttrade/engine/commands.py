@@ -24,7 +24,7 @@ def backtest(
     start_at,
     stop_at,
     capital=10000,
-    commision=0,
+    commission=0,
     slippage_perc=0,
     level=logging.WARNING,
     time_buffer=250
@@ -85,7 +85,7 @@ def backtest(
                     shares,
                     loss,
                     trailling,
-                    commision,
+                    commission,
                     slip,
                 )
                 logging.info("num of shares buyed: " + str(shares))
@@ -114,7 +114,7 @@ def backtest(
                     shares,
                     loss,
                     trailling,
-                    commision,
+                    commission,
                     slip,
                 )
 
@@ -129,8 +129,8 @@ def backtest(
 
     for i, row in data_sims[tickers[0]].iterrows():
         for ticker in policies.keys():
-            ticker_row = data_sims[ticker].loc[i]
             if i in data_sims[ticker].index:
+                ticker_row = data_sims[ticker].loc[i]
                 remaining_capital[ticker] = execute_policy(
                     policies[ticker],
                     i,

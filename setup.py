@@ -19,6 +19,8 @@ setuptools.setup(
         "IPython",
         "altair",
         "quandl",
-        "python-decouple"
+        "python-decouple",
+        'scipy',
+        'plotly'
     ],
 )
