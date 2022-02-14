@@ -139,15 +139,13 @@ def backtest(
                     remaining_capital[ticker], 
                     ticker
                 )
+                money = trade_list.verify_stop_loss(
+                    str(i), ticker_row["low"], ticker_row["high"]
+                )
+                remaining_capital[ticker] += money
 
-        for ticker in policies.keys():
-            money = trade_list.verify_stop_loss(
-                str(i), ticker_row["low"], ticker_row["high"]
-            )
-            remaining_capital[ticker] += money
+                result.update(i, trade_list, ticker)
 
-            result.update(i, trade_list, ticker)
-    
     #Data returns only works with one ticker, for visualization purposes
     return result, data
 
