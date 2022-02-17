@@ -140,7 +140,7 @@ def backtest(
                     ticker
                 )
                 money = trade_list.verify_stop_loss(
-                    str(i), ticker_row["low"], ticker_row["high"]
+                    str(i), ticker, ticker_row["low"], ticker_row["high"]
                 )
                 remaining_capital[ticker] += money
 

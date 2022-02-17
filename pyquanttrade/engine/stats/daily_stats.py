@@ -241,13 +241,13 @@ class DailyStats:
         join_results["trade_close"] = join_results["trade_profit"].div(join_results["trade_inversion"]) + 1
         join_results["trade_sequence"] = join_results["trade_cum_profit"].div(join_results["trade_cum_inversion"]) + 1
         join_results["Daily_current_inversion"] = ticker_a_results["Daily_current_inversion"] + ticker_b_result["Daily_current_inversion"]
-        join_results["profit_sequence"] = ticker_a_results["profit_sequence"] + ticker_b_result["profit_sequence"]
-        join_results["Daily_sequence"] = join_results["profit_sequence"].div(join_results["Daily_current_inversion"]) + 1
+        join_results["profit_sequence"] = ticker_a_results["profit_sequence"].add(ticker_b_result["profit_sequence"],fill_value=ticker_b_result["profit_sequence"][0])
+        join_results["Daily_sequence"] = join_results["profit_sequence"].div(join_results["Daily_current_inversion"]) + 1 
         join_results["last_closed_profit"] = ticker_a_results["last_closed_profit"] + ticker_b_result["last_closed_profit"]
         join_results["sum_open_price"] = ticker_a_results["sum_open_price"] + ticker_b_result["sum_open_price"]
         join_results["Daily_cumulative"] = (ticker_a_results["profit_sequence"] - ticker_a_results["last_closed_profit"]).div(ticker_b_result["sum_open_price"]) + 1
         join_results["open_trades"] = ticker_a_results["open_trades"] + ticker_b_result["open_trades"]
-        join_results["Daily_capital"] = ticker_a_results["Daily_capital"] + ticker_b_result["Daily_capital"]
+        join_results["Daily_capital"] = ticker_a_results["Daily_capital"].add(ticker_b_result["Daily_capital"],fill_value=ticker_b_result["Daily_capital"][0])
         join_results["Daily_freeze"] = ticker_a_results["Daily_freeze"] + ticker_b_result["Daily_freeze"]
         join_results["baseline"] = ticker_a_results["baseline"] + ticker_b_result["baseline"]
 

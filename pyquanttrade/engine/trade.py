@@ -259,55 +259,56 @@ class TradeList:
         )
         return profits / init_capital
 
-    def verify_stop_loss(self, day, min_price, max_price):
+    def verify_stop_loss(self, day, ticker, min_price, max_price):
         money = 0
         for key in list(self.trades_opened.keys()):
             v = self.trades_opened[key]
-            if v.type == "long":
-                if (1 - v.stop_loss) * v.up_price > min_price:
-                    self.logger.info(
-                        str(day)
-                        + " : "
-                        + str(v.up_price)
-                        + " - stop loss price: "
-                        + str((1 - v.stop_loss) * v.up_price)
-                        + " - min price: "
-                        + str(min_price)
-                    )
-                    v.close(day, (1 - v.stop_loss) * v.up_price)
-                    self.trades_closed[key] = v
-                    money += v.init_capital + v.profit
-                    del self.trades_opened[key]
-                    self.logger.info(" trades close. Money free :" + str(money))
+            if v.ticker == ticker:
+                if v.type == "long":
+                    if (1 - v.stop_loss) * v.up_price > min_price:
+                        self.logger.info(
+                            str(day)
+                            + " : "
+                            + str(v.up_price)
+                            + " - stop loss price: "
+                            + str((1 - v.stop_loss) * v.up_price)
+                            + " - min price: "
+                            + str(min_price)
+                        )
+                        v.close(day, (1 - v.stop_loss) * v.up_price)
+                        self.trades_closed[key] = v
+                        money += v.init_capital + v.profit
+                        del self.trades_opened[key]
+                        self.logger.info(" trades close. Money free :" + str(money))
+                    else:
+                        # increment days counter:
+                        v.num_days += 1
+
+                    if v.stop_loss_trailing and max_price > v.up_price:
+                        v.up_price = max_price
                 else:
-                    # increment days counter:
-                    v.num_days += 1
+                    if (1 + v.stop_loss) * v.up_price < max_price:
+                        self.logger.info(
+                            str(day)
+                            + " : "
+                            + str(v.up_price)
+                            + " - stop loss price: "
+                            + str((1 + v.stop_loss) * v.up_price)
+                            + " - max price: "
+                            + str(max_price)
+                        )
+                        v.close(day, (1 + v.stop_loss) * v.up_price)
+                        self.trades_closed[key] = v
+                        money += v.init_capital + v.profit
+                        del self.trades_opened[key]
+                        self.logger.info(" trades close. Money free :" + str(money))
 
-                if v.stop_loss_trailing and max_price > v.up_price:
-                    v.up_price = max_price
-            else:
-                if (1 + v.stop_loss) * v.up_price < max_price:
-                    self.logger.info(
-                        str(day)
-                        + " : "
-                        + str(v.up_price)
-                        + " - stop loss price: "
-                        + str((1 + v.stop_loss) * v.up_price)
-                        + " - max price: "
-                        + str(max_price)
-                    )
-                    v.close(day, (1 + v.stop_loss) * v.up_price)
-                    self.trades_closed[key] = v
-                    money += v.init_capital + v.profit
-                    del self.trades_opened[key]
-                    self.logger.info(" trades close. Money free :" + str(money))
+                    else:
+                        # increment days counter:
+                        v.num_days += 1
 
-                else:
-                    # increment days counter:
-                    v.num_days += 1
-
-                if v.stop_loss_trailing and min_price < v.up_price:
-                    v.up_price = max_price
+                    if v.stop_loss_trailing and min_price < v.up_price:
+                        v.up_price = max_price
         return money
 
     def clone(self, ticker):

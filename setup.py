@@ -2,7 +2,7 @@ import setuptools
 from setuptools import find_packages
 setuptools.setup(
     name="pyquanttrade",  
-    version="0.0.8",
+    version="0.0.9",
     author="Miguel Martin, Marcos Jimenez",
     description="Library for backtesting algorithmic trading strategies using Quandl data",
     
