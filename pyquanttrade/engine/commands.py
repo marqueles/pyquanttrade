@@ -203,7 +203,7 @@ def backtest_and_visualise(
         start_at,
         stop_at,
         capital=10000,
-        commission=0,
+        commission=commission,
         slippage_perc=0,
         level=logging.WARNING,
         time_buffer=250)
