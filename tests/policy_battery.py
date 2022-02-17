@@ -1,9 +1,11 @@
 
 from pyquanttrade.features.functions import (
+    exponential_smoothing,
     moving_average,
     upper_bollinger_band,
     lower_bollinger_band,
     get_column,
+    days_to_constant
 )
 from pyquanttrade.policy import Policy
 
@@ -61,7 +63,7 @@ class test_policy_2(Policy):
 
     @classmethod
     def buy_long_when(self):
-        func1 = moving_average(10)
+        func1 = exponential_smoothing(days_to_constant(50))
         func2 = moving_average(40)
         return cross_of_values(func1, func2)
 
