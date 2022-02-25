@@ -131,7 +131,7 @@ def backtest(
         return remaining
 
     if progress_bar == True:
-        iterable = tqdm(data_sims[tickers[0]].iterrows(), total = data_sims[tickers[0]].shape[0])
+        iterable = tqdm(data_sims[tickers[0]].iterrows(), total = data_sims[tickers[0]].shape[0], smoothing=0)
     else:
         iterable = data_sims[tickers[0]].iterrows()
 
