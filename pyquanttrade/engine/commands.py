@@ -7,15 +7,17 @@
 __author__ = "Miguel Martin"
 __version__ = "1"
 
+import logging
+from datetime import datetime, timedelta
 from pyquanttrade import market
 from pyquanttrade.market import marketData
 from pyquanttrade.engine.trade import TradeList
 from pyquanttrade.engine.test_result import TestResult
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+from tqdm.auto import tqdm
 import plotly.graph_objects as go
-import logging
+
 
 # TODO: end positions closes to compute final return
 def backtest(
@@ -27,7 +29,8 @@ def backtest(
     commission=0,
     slippage_perc=0,
     level=logging.WARNING,
-    time_buffer=250
+    time_buffer=250,
+    progress_bar = False
 ):
     logging.basicConfig(level=level)
     if not isinstance(tickers, list):
@@ -127,7 +130,12 @@ def backtest(
                 remaining += money
         return remaining
 
-    for i, row in data_sims[tickers[0]].iterrows():
+    if progress_bar == True:
+        iterable = tqdm(data_sims[tickers[0]].iterrows(), total = data_sims[tickers[0]].shape[0])
+    else:
+        iterable = data_sims[tickers[0]].iterrows()
+
+    for i, row in iterable:
         for ticker in policies.keys():
             if i in data_sims[ticker].index:
                 ticker_row = data_sims[ticker].loc[i]
@@ -194,6 +202,7 @@ def backtest_and_visualise(
     slippage_perc=0,
     level=logging.WARNING,
     time_buffer=250,
+    progress_bar = False
 ):
     assert ticker is not list
 
@@ -202,11 +211,12 @@ def backtest_and_visualise(
         ticker,
         start_at,
         stop_at,
-        capital=10000,
+        capital=capital,
         commission=commission,
-        slippage_perc=0,
-        level=logging.WARNING,
-        time_buffer=250)
+        slippage_perc=slippage_perc,
+        level=level,
+        time_buffer=time_buffer,
+        progress_bar = progress_bar)
 
     for _, trade in result.data.trade_list.trades_closed.items():
         if trade.type == 'long':

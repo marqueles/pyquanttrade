@@ -21,6 +21,7 @@ setuptools.setup(
         "quandl",
         "python-decouple",
         'scipy',
-        'plotly'
+        'plotly',
+        'tqdm'
     ],
 )
