@@ -99,9 +99,9 @@
 </div>
           <div role="main">
             
-  <section id="functions">
-<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
-<span class="target" id="module-pyquanttrade.features.functions"></span><p>Functions to create strategies.</p>
+  <section id="module-pyquanttrade.features.functions">
+<span id="functions"></span><h1>Functions<a class="headerlink" href="#module-pyquanttrade.features.functions" title="Permalink to this headline">¶</a></h1>
+<p>Functions to create strategies.</p>
 <p>All of the functions return a <em>programatic function</em> which calculates the given function for some OCHL data.</p>
 <p>To build a function not included in the package, use the following template:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;close&#39;</span><span class="p">):</span>
@@ -110,6 +110,17 @@
     <span class="k">return</span> <span class="n">return_function</span>
 </pre></div>
 </div>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyquanttrade.features.functions.line">
+<span class="sig-name descname"><span class="pre">line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyquanttrade.features.functions.line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Line which can be used to cross with functions like RSI or MACD. Name: line_*value*</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – Value of the line</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="pyquanttrade.features.functions.days_to_constant">
 <span class="sig-name descname"><span class="pre">days_to_constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">days</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyquanttrade.features.functions.days_to_constant" title="Permalink to this definition">¶</a></dt>

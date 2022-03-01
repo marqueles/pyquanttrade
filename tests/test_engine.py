@@ -82,9 +82,7 @@ def test_x():
         results_df.to_excel(excel_name, sheet_name='All trades')
 
 
-    stock_list = ['XOM', 'GOOGL','FB','CMCSA','CVX','SHEL','UPS','BA','UNP','AAPL','MSFT',
-        'NVDA','JNJ','UNH','ABBV','NEE','SO','D','PG','KO','PEP','RIO','LYB','ECL','AMZN',
-        'TSLA','WMT','V','JPM','PLD','AMT','CCI']
+    stock_list = ['XOM', 'GOOGL','FB']
     test_all_in_one(stock_list, 'results_all.xlsx')
     stock_list = ['SO', 'GOOGL', 'AAPL', 'MSFT', 'NEE', 'AMZN', 'V', 'AMT']
     test_all_in_one(stock_list, 'results_high_recovery_ratio.xlsx')
