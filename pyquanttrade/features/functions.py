@@ -17,6 +17,7 @@ import numpy as np
 
 def line(value):
     """Line which can be used to cross with functions like RSI or MACD
+    Name: line_*value*
 
     :param value: Value of the line
     :type value: float
