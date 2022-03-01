@@ -16,7 +16,7 @@ To build a function not included in the package, use the following template::
 import numpy as np
 
 def line(value):
-    """Line which can be used to cross with functions like RSI or MACD. Name: **line_value**
+    """Line which can be used to cross with functions like RSI or MACD. Name: *li*ne_value
 
     :param value: Value of the line
     :type value: float
