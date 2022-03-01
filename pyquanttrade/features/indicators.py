@@ -139,6 +139,30 @@ def lower_than(func1, func2):
 
     return return_function
 
+def lower_than_value(func1, value):
+    def return_function(when, ticker, trades, data):
+        data1 = func1(data)
+        column_name = f"{data1.name}_lower_than_{value}"
+        if column_name not in data.columns:
+            data[column_name] = 0
+            data.loc[data1 < value, [column_name]] = 1
+            data[column_name] = data[column_name].astype(bool)
+        return data[column_name][when]
+
+    return return_function
+
+def greater_than_value(func1, value):
+    def return_function(when, ticker, trades, data):
+        data1 = func1(data)
+        column_name = f"{data1.name}_lower_than_{value}"
+        if column_name not in data.columns:
+            data[column_name] = 0
+            data.loc[data1 > value, [column_name]] = 1
+            data[column_name] = data[column_name].astype(bool)
+        return data[column_name][when]
+
+    return return_function
+
 
 def upwards_turn(func1):
     def return_function(when, ticker, trades, data):

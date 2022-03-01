@@ -17,6 +17,7 @@ import pandas as pd
 import numpy as np
 from tqdm.auto import tqdm
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 
 # TODO: end positions closes to compute final return
@@ -157,10 +158,8 @@ def backtest(
     #Data returns only works with one ticker, for visualization purposes
     return result, data
 
-def plot_activity_list(activity_list):
+def plot_activity_list(activity_list, fig):
     
-    fig = go.Figure()
-
     #Decoding signal list as separate lists
     activity_list['buy_long'] = None
     activity_list.loc[activity_list['signals']=='Buy_long','buy_long'] = activity_list.loc[activity_list['signals']=='Buy_long','close']
@@ -226,10 +225,20 @@ def backtest_and_visualise(
             data.loc[trade.open_day,'signals'] = 'Sell_short'
             data.loc[trade.close_day,'signals'] = 'Close_short'
 
-    fig = plot_activity_list(data)
+    
 
+    if len(policy.second_plot_functions) > 0 :
+        fig = make_subplots(rows = 2, cols = 1, shared_xaxes=True)
+        for elem in policy.second_plot_functions:
+            if elem in data.columns:
+                fig.add_trace(go.Scatter(x = data.index, y = data[elem], mode='lines', name=elem, line={'width':1}), row = 2, col = 1)
+        
+    else: 
+        fig = go.Figure()
+
+    plot_activity_list(data, fig)
     for elem in policy.plot_functions:
         if elem in data.columns:
-            fig.add_trace(go.Scatter(x = data.index, y = data[elem], mode='lines', name=elem, line={'width':1}))
+            fig.add_trace(go.Scatter(x = data.index, y = data[elem], mode='lines', name=elem, line={'width':1}), row = 1, col = 1)
 
     return result, fig

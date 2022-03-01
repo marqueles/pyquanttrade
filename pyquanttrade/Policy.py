@@ -28,6 +28,7 @@ class Policy:
     """
 
     plot_functions = []
+    second_plot_functions = []
 
     long_stop_loss = 1
     short_stop_loss = 1
