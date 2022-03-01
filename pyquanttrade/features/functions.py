@@ -15,6 +15,19 @@ To build a function not included in the package, use the following template::
 
 import numpy as np
 
+def line(value):
+    """Line which can be used to cross with functions like RSI or MACD
+
+    :param value: Value of the line
+    :type value: float
+    """
+    def return_function(data):
+        column_name = f'line_{value}'
+        if column_name not in data.columns:
+            data[column_name] = value
+        return data[column_name].copy()
+
+    return return_function
 
 def days_to_constant(days, order=1):
     #TODO: Finish documenting
