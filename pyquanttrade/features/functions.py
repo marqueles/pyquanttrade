@@ -770,7 +770,7 @@ def MACD_line(slow_trend=26, fast_trend=12):
 def MACD_signal(signal, slow_trend=26, fast_trend=12):
     """
     | Calculates the MACD signal
-    | Name: MACD\signal\_\ **slow_trend**\ \/\ **fast_trend**\ \/\ **signal**
+    | Name: MACD\_signal\_\ **slow_trend**\ \/\ **fast_trend**\ \/\ **signal**
 
     :param signal: Exponential smoothing window size of the MACD line
     :type signal: int
@@ -794,7 +794,7 @@ def MACD_signal(signal, slow_trend=26, fast_trend=12):
 def MACD_histogram(signal, slow_trend=26, fast_trend=12):
     """
     | Calculates the MACD histogram
-    | Name: MACD\histogram\_\ **slow_trend**\ \/\ **fast_trend**\ \/\ **signal**
+    | Name: MACD\_histogram\_\ **slow_trend**\ \/\ **fast_trend**\ \/\ **signal**
 
     :param signal: Exponential smoothing window size of the MACD line
     :type signal: int
