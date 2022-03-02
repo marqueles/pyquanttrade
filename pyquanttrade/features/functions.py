@@ -411,7 +411,7 @@ def double_moving_average(days):
 def double_smoothed_momentum(days1, days2):
     """
     | Calculates the momentum, smoothed by two consecutive exponential smoothings
-    | Name: DSM**days1**\ \/\ **days2**
+    | Name: DSM\ **days1**\ \/\ **days2**
     
     :param days1: First smoothing window size
     :type days1: int
@@ -454,7 +454,9 @@ def regularized_exponential_ma(days, weight, target="close"):
 
 
 def hull_moving_average(period=16, target="close"):
-    """Calculates the hull moving average
+    """
+    | Calculates the hull moving average
+    | Name: hull\_moving\_average\_\ **period**\ \_of\_\ **target**
 
     :param period: Window size, defaults to 16
     :type period: int, optional
@@ -477,7 +479,9 @@ def hull_moving_average(period=16, target="close"):
 
 
 def upper_keltner_channel(days=10):
-    """Calculates the upper keltner channel
+    """
+    | Calculates the upper keltner channel
+    | Name: upper\_keltner\_\ **days**
 
     :param days: Window size, defaults to 10
     :type days: int, optional
@@ -497,7 +501,9 @@ def upper_keltner_channel(days=10):
 
 
 def lower_keltner_channel(days=10):
-    """Calculates the lower keltner channel
+    """
+    | Calculates the lower keltner channel
+    | Name: lower\_keltner\_\ **days**
 
     :param days: Window size, defaults to 10
     :type days: int, optional
@@ -517,7 +523,9 @@ def lower_keltner_channel(days=10):
 
 
 def upper_percentage_band(c, band_target, center_target):
-    """Calculates the upper percentage band
+    """
+    | Calculates the upper percentage band
+    | Name: upper\_percentage\_band\_\ **c**\ \_of\_\ **band\_target.name\ \_over\_\ **center_target.name**
 
     :param c: multiplier constant
     :type c: float
