@@ -525,7 +525,7 @@ def lower_keltner_channel(days=10):
 def upper_percentage_band(c, band_target, center_target):
     """
     | Calculates the upper percentage band
-    | Name: upper\_percentage\_band\_\ **c**\ \_of\_\ **band\_target.name\ \_over\_\ **center_target.name**
+    | Name: upper\_percentage\_band\_\ **c**\ \_of\_\ **band\_target.name**\ \_over\_\ **center_target.name**
 
     :param c: multiplier constant
     :type c: float
@@ -545,7 +545,9 @@ def upper_percentage_band(c, band_target, center_target):
 
 
 def lower_percentage_band(c, band_target, center_target):
-    """Calculates the lower percentage band
+    """
+    | Calculates the lower percentage band
+    | Name: lower\_percentage\_band\_\ **c**\ \_of\_\ **band\_target.name\ \_over\_\ **center_target.name**
 
     :param c: multiplier constant
     :type c: float
@@ -564,7 +566,9 @@ def lower_percentage_band(c, band_target, center_target):
 
 
 def upper_absolute_band(value, target):
-    """Calculates the upper absolute band
+    """
+    | Calculates the upper absolute band
+    | Name: upper\_absolute\_band\_\ **value**\ \_over\_\ **target.name**
 
     :param value: Constant for band displacement
     :type value: float
@@ -581,7 +585,9 @@ def upper_absolute_band(value, target):
 
 
 def lower_absolute_band(value, target):
-    """Calculates the lower absolute band
+    """
+    | Calculates the lower absolute band
+    | Name: lower\_absolute\_band\_\ **value**\ \_over\_\ **target.name**
 
     :param value: Constant for band displacement
     :type value: float
@@ -598,7 +604,9 @@ def lower_absolute_band(value, target):
 
 
 def upper_bollinger_band(mean_days, std_days, c):
-    """Calculates the upper bollinger band
+    """
+    | Calculates the upper bollinger band
+    | Name: upper\_bollinger\_band\_\ **mean_days\ \/\ **std_days**
 
     :param mean_days: Window size for the band center
     :type mean_days: int
