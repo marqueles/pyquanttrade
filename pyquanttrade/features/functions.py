@@ -80,7 +80,9 @@ def trailing(target="close", days=40, over_under="under"):
 
 
 def rolling_std(days, target="close"):
-    """Calculates the rolling standard deviation
+    """
+    | Calculates the rolling standard deviation
+    | Name: rolling\_std\_\ **days**\ \_of\_\ **target**
 
     :param days: Size of the window in days
     :type days: int
@@ -97,7 +99,9 @@ def rolling_std(days, target="close"):
 
 
 def moving_average(days, target="close"):
-    """Calculates the rolling moving average
+    """
+    | Calculates the rolling moving average
+    | Name: moving\_average\_\ **days**\ \_of\_\ **target**
 
     :param days: Size of the window in days
     :type days: int
@@ -114,7 +118,9 @@ def moving_average(days, target="close"):
 
 
 def weighted_moving_average(days, weights):
-    """Calculates the rolling weighted moving average. The weights list should have the size of the days window.
+    """
+    | Calculates the rolling weighted moving average. The weights list should have the size of the days window.
+    | Name: weighted\_moving\_average\_\ **days**
 
     :param days: Size of the window
     :type days: int
@@ -142,7 +148,9 @@ def weighted_moving_average(days, weights):
 
 
 def step_weighting_ma(days, first_weight=1, step=1):
-    """Calculates the weighted moving average using stepped weights
+    """
+    | Calculates the weighted moving average using stepped weights
+    | step\_weighting\_ma\_\ **days**
 
     :param days: Window size
     :type days: int
@@ -170,7 +178,9 @@ def step_weighting_ma(days, first_weight=1, step=1):
 
 
 def percentage_weighting_ma(days, last_weight=1, step=0.5):
-    """Calculates the weighted moving average using backwards set weights. F.e. for a given last days=3, weight=1, step=0.5, the wieghts would be [0.25, 0.5, 1]
+    """
+    | Calculates the weighted moving average using backwards set weights. F.e. for a given last days=3, weight=1, step=0.5, the wieghts would be [0.25, 0.5, 1]
+    | percentage\_weighting\_ma\_\ **days**
 
     :param days: Window size
     :type days: int
@@ -201,7 +211,9 @@ def percentage_weighting_ma(days, last_weight=1, step=0.5):
 
 
 def triangular_weighting_ma(days=10, shape="linear"):
-    """Calculates the weighted moving average with the weights having a triangular shape
+    """
+    | Calculates the weighted moving average with the weights having a triangular shape
+    | Name: **shape**\ \_trianguar\_weighting\_ma\_\ **days**
 
     :param days: Window size, defaults to 10
     :type days: int, optional
@@ -274,7 +286,9 @@ def pivot_point_weighting_ma(days):
 
 
 def geometric_moving_average(days, target='close'):
-    """Calculates the geometric moving average
+    """
+    | Calculates the geometric moving average
+    | Name: geometric\_moving\_average\_\ **days**
 
     :param days: Window size
     :type days: int
@@ -293,7 +307,9 @@ def geometric_moving_average(days, target='close'):
 
 
 def exponential_smoothing(constant, target="close"):
-    """Calculates the exponential smoothing
+    """
+    | Calculates the exponential smoothing
+    | Name: exponential\_smoothing\_\ **constant**\ %\_of\_\ **target**
 
     :param constant: Smoothing constant for the calculation. Use function days_to_constant_
     :type constant: float
