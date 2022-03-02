@@ -606,7 +606,7 @@ def lower_absolute_band(value, target):
 def upper_bollinger_band(mean_days, std_days, c):
     """
     | Calculates the upper bollinger band
-    | Name: upper\_bollinger\_band\_\ **mean_days\ \/\ **std_days**
+    | Name: upper\_bollinger\_band\_\ **mean_days**\ \/\ **std_days**
 
     :param mean_days: Window size for the band center
     :type mean_days: int
@@ -627,7 +627,9 @@ def upper_bollinger_band(mean_days, std_days, c):
 
 
 def lower_bollinger_band(mean_days, std_days, c):
-    """Calculates the lower bollinger band
+    """
+    | Calculates the lower bollinger band
+    | Name: lower\_bollinger\_band\_\ **mean_days**\ \/\ **std_days**
 
     :param mean_days: Window size for the band center
     :type mean_days: int
@@ -648,7 +650,9 @@ def lower_bollinger_band(mean_days, std_days, c):
 
 
 def upper_volatility_band(c, dev_target, band_target, center_target):
-    """Calculates the upper volatility band
+    """
+    | Calculates the upper volatility band
+    | Name: upper\_volatility\_band\_\ **c**\ \_times\_\ **band_target.name**\ &\ **dev_target.name**\ \_over\_\ **center_target.name**
 
     :param c: Multiplier constant
     :type c: float
