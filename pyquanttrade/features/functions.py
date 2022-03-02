@@ -54,7 +54,8 @@ def get_column(column):
 
 def trailing(target="close", days=40, over_under="under"):
     """
-    Calculates the if the target is trailing under or over the current in the past days.
+    | Calculates the if the target is trailing under or over the current in the past days.
+    | Name: trailling\_\ **over\_under**\ \_\ **days**\ \_of\_\ **target**
 
     :param target: Data column to use for the calculation, defaults to "close"
     :type target: str
