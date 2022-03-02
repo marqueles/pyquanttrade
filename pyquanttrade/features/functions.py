@@ -150,7 +150,7 @@ def weighted_moving_average(days, weights):
 def step_weighting_ma(days, first_weight=1, step=1):
     """
     | Calculates the weighted moving average using stepped weights
-    | step\_weighting\_ma\_\ **days**
+    | Name: step\_weighting\_ma\_\ **days**
 
     :param days: Window size
     :type days: int
@@ -180,7 +180,7 @@ def step_weighting_ma(days, first_weight=1, step=1):
 def percentage_weighting_ma(days, last_weight=1, step=0.5):
     """
     | Calculates the weighted moving average using backwards set weights. F.e. for a given last days=3, weight=1, step=0.5, the wieghts would be [0.25, 0.5, 1]
-    | percentage\_weighting\_ma\_\ **days**
+    | Name: percentage\_weighting\_ma\_\ **days**
 
     :param days: Window size
     :type days: int
@@ -213,7 +213,7 @@ def percentage_weighting_ma(days, last_weight=1, step=0.5):
 def triangular_weighting_ma(days=10, shape="linear"):
     """
     | Calculates the weighted moving average with the weights having a triangular shape
-    | Name: **shape**\ \_trianguar\_weighting\_ma\_\ **days**
+    | Name: **shape**\ \_trianguar\_weighting\_ma\_\ **days**
 
     :param days: Window size, defaults to 10
     :type days: int, optional
@@ -288,7 +288,7 @@ def pivot_point_weighting_ma(days):
 def geometric_moving_average(days, target='close'):
     """
     | Calculates the geometric moving average
-    | Name: geometric\_moving\_average\_\ **days**
+    | Name: geometric\_moving\_average\_\ **days**
 
     :param days: Window size
     :type days: int
@@ -330,7 +330,9 @@ def exponential_smoothing(constant, target="close"):
 
 
 def second_order_exponential_smoothing(constant):
-    """Calculates the second order exponential smoothing of close
+    """
+    | Calculates the second order exponential smoothing of close
+    | Name: second\_order\_exponential\_smoothing\_\ **constant**%
 
     :param constant: Smoothing constant for the calculation. Use function days_to_constant_
     :type constant: float
@@ -350,7 +352,9 @@ def second_order_exponential_smoothing(constant):
 
 
 def third_order_exponential_smoothing(constant):
-    """Calculates the second order exponential smoothing of close
+    """
+    | Calculates the second order exponential smoothing of close
+    | Name: third\_order\_exponential\_smoothing\_\ **constant**%
 
     :param constant: Smoothing constant for the calculation. Use function days_to_constant_
     :type constant: float
@@ -387,7 +391,9 @@ def lag_correction_exponential_smoothing(constant):
 
 
 def double_moving_average(days):
-    """Calculates the double moving average of close
+    """
+    | Calculates the double moving average of close
+    | Name: double\_moving\_average\_\ **days**
 
     :param days: Window size
     :type days: int
@@ -403,7 +409,9 @@ def double_moving_average(days):
 
 
 def double_smoothed_momentum(days1, days2):
-    """Calculates the momentum, smoothed by two consecutive exponential smoothings
+    """
+    | Calculates the momentum, smoothed by two consecutive exponential smoothings
+    | Name: DSM**days1**\ \/\ **days2**
     
     :param days1: First smoothing window size
     :type days1: int
