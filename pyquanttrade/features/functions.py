@@ -332,7 +332,7 @@ def exponential_smoothing(constant, target="close"):
 def second_order_exponential_smoothing(constant):
     """
     | Calculates the second order exponential smoothing of close
-    | Name: second\_order\_exponential\_smoothing\_\ **constant**%
+    | Name: second\_order\_exponential\_smoothing\_\ **constant**\ %
 
     :param constant: Smoothing constant for the calculation. Use function days_to_constant_
     :type constant: float
@@ -354,7 +354,7 @@ def second_order_exponential_smoothing(constant):
 def third_order_exponential_smoothing(constant):
     """
     | Calculates the second order exponential smoothing of close
-    | Name: third\_order\_exponential\_smoothing\_\ **constant**%
+    | Name: third\_order\_exponential\_smoothing\_\ **constant**\ %
 
     :param constant: Smoothing constant for the calculation. Use function days_to_constant_
     :type constant: float
@@ -891,7 +891,7 @@ def stochastic_percentageK(days):
 def stochastic_percentageD(days, daysK):
     """
     | Calculates the stochastic D
-    | stochastic\_percentageD\_\ **days**\ \/\ **daysK**
+    | Name: stochastic\_percentageD\_\ **days**\ \/\ **daysK**
 
     :param days: Window size
     :type days: int
@@ -910,7 +910,10 @@ def stochastic_percentageD(days, daysK):
 
 
 def ADoscillator():
-    """Calculates the A/D oscillator"""
+    """
+    | Calculates the A/D oscillator
+    | Name: A\/D\_oscillator
+    """
     def f(x):
         buying_power = x["high"] - x["open"]
         selling_power = x["close"] - x["low"]
@@ -927,7 +930,9 @@ def ADoscillator():
 
 
 def percentageR(days):
-    """Calculates the stochastic R
+    """
+    | Calculates the stochastic R
+    | Name: percentageR\_\ **days**
     
     :param days: Window size
     :type days: int
@@ -952,7 +957,9 @@ def percentageR(days):
 
 
 def RSI(days):
-    """Calculates the RSI
+    """
+    | Calculates the RSI
+    | Name: RSI\_\ **days**
 
     :param days: Window size
     :type days: int
@@ -982,7 +989,10 @@ def RSI(days):
 
 
 def special_k():
-    """Calculates the special k indicator"""
+    """
+    | Calculates the special k indicator
+    | Name: special_k
+    """
     def return_function(data):
         column_name = "special_k"
         if column_name not in data.columns:
