@@ -678,7 +678,9 @@ def upper_volatility_band(c, dev_target, band_target, center_target):
 
 
 def lower_volatility_band(c, dev_target, band_target, center_target):
-    """Calculates the lower volatility band
+    """
+    | Calculates the lower volatility band
+    | Name: lower\_volatility\_band\_\ **c**\ \_times\_\ **band_target.name**\ &\ **dev_target.name**\ \_over\_\ **center_target.name**
 
     :param c: Multiplier constant
     :type c: float
@@ -704,7 +706,9 @@ def lower_volatility_band(c, dev_target, band_target, center_target):
 
 
 def momentum(days=1, target="close"):
-    """Calculates the momentum
+    """
+    | Calculates the momentum
+    | Name: momentum\_\ **days**\ \_of\_\ **target**
 
     :param days: Window size, defaults to 1
     :type days: int, optional
@@ -721,7 +725,9 @@ def momentum(days=1, target="close"):
 
 
 def momentum_percentage(days=1, target="close"):
-    """Calculates the momentum as a percentage
+    """
+    | Calculates the momentum as a percentage
+    | Name: momentum\_percentage\_\ **days**\ \_of\_\ **target**
 
     :param days: Window size, defaults to 1
     :type days: int, optional
@@ -741,7 +747,9 @@ def momentum_percentage(days=1, target="close"):
 
 
 def MACD_line(slow_trend=26, fast_trend=12):
-    """Calculates the MACD line
+    """
+    | Calculates the MACD line
+    | Name: MACD\_line\_\ **slow_trend**\ \/\ **fast_trend**
 
     :param slow_trend: Slow window size, defaults to 26
     :type slow_trend: int, optional
@@ -760,7 +768,9 @@ def MACD_line(slow_trend=26, fast_trend=12):
 
 
 def MACD_signal(signal, slow_trend=26, fast_trend=12):
-    """Calculates the MACD signal
+    """
+    | Calculates the MACD signal
+    | Name: MACD\signal\_\ **slow_trend**\ \/\ **fast_trend**\ \/\ **signal**
 
     :param signal: Exponential smoothing window size of the MACD line
     :type signal: int
@@ -782,7 +792,9 @@ def MACD_signal(signal, slow_trend=26, fast_trend=12):
 
 
 def MACD_histogram(signal, slow_trend=26, fast_trend=12):
-    """Calculates the MACD histogram
+    """
+    | Calculates the MACD histogram
+    | Name: MACD\histogram\_\ **slow_trend**\ \/\ **fast_trend**\ \/\ **signal**
 
     :param signal: Exponential smoothing window size of the MACD line
     :type signal: int
@@ -803,7 +815,9 @@ def MACD_histogram(signal, slow_trend=26, fast_trend=12):
 
 
 def divergence_index(slow_trend, fast_trend):
-    """Calculates the divergence index
+    """
+    | Calculates the divergence index
+    | Name: divergence\_index\_\ **slow_trend**\ \/\ **fast_trend**
 
     :param slow_trend: Slow window size
     :type slow_trend: int
@@ -825,7 +839,9 @@ def divergence_index(slow_trend, fast_trend):
 
 
 def average_true_range(days=10, target="close"):
-    """Calculates the average true range
+    """
+    | Calculates the average true range
+    | Name: average\_true\_range\_\ **days**\ \_of\_\ **target**
 
     :param days: Window size, defaults to 10
     :type days: int, optional
@@ -845,7 +861,9 @@ def average_true_range(days=10, target="close"):
 
 
 def stochastic_percentageK(days):
-    """Calculates the stochastic K
+    """
+    | Calculates the stochastic K
+    | Name: stochastic\_percentageK\_\ **days**
 
     :param days: Window size
     :type days: int
@@ -871,7 +889,9 @@ def stochastic_percentageK(days):
 
 
 def stochastic_percentageD(days, daysK):
-    """Calculates the stochastic D
+    """
+    | Calculates the stochastic D
+    | stochastic\_percentageD\_\ **days**\ \/\ **daysK**
 
     :param days: Window size
     :type days: int
@@ -879,7 +899,7 @@ def stochastic_percentageD(days, daysK):
     :type daysK: int
     """
     def return_function(data):
-        column_name_K = f"stochastic_percentageK_{days}"
+        column_name_K = f"stochastic_percentageK_{daysK}"
         column_name = f"stochastic_percentageD_{days}/{daysK}"
         if column_name not in data.columns:
             stochastic_percentageK(daysK)(data)
