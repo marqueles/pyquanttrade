@@ -13,6 +13,7 @@ from pyquanttrade import market
 from pyquanttrade.market import marketData
 from pyquanttrade.engine.trade import TradeList
 from pyquanttrade.engine.test_result import TestResult
+from pyquanttrade.engine.utils import default_comission_cost, default_slippage_cost
 import pandas as pd
 import numpy as np
 from tqdm.auto import tqdm
@@ -27,8 +28,8 @@ def backtest(
     start_at,
     stop_at,
     capital=10000,
-    commission=0,
-    slippage_perc=0,
+    commission=default_comission_cost,
+    slippage_perc=default_slippage_cost,
     level=logging.WARNING,
     time_buffer=250,
     progress_bar = False
@@ -77,7 +78,6 @@ def backtest(
             if signal == "Buy_long":
 
                 logging.info(str(ticker) + " : " + str(i) + " -- " + signal)
-                slip = slippage_perc * (row["high"] - row["low"])
                 loss = policy_class.long_stop_loss
                 trailling = policy_class.long_stop_loss_trailling
                 shares, remaining = calculate_num_shares(remaining, row["open"])
@@ -90,7 +90,7 @@ def backtest(
                     loss,
                     trailling,
                     commission,
-                    slip,
+                    slippage_perc,
                 )
                 logging.info("num of shares buyed: " + str(shares))
                 logging.info("cost of shares buyed: " + str(shares * row["open"]))
@@ -106,7 +106,6 @@ def backtest(
             if signal == "Sell_short":
 
                 logging.info(str(ticker) + " : " + str(i) + " -- " + signal)
-                slip = slippage_perc * (row["high"] - row["low"])
                 loss = policy_class.short_stop_loss
                 trailling = policy_class.short_stop_loss_trailling
                 shares, remaining = calculate_num_shares(remaining, row["open"])
@@ -119,7 +118,7 @@ def backtest(
                     loss,
                     trailling,
                     commission,
-                    slip,
+                    slippage_perc,
                 )
 
             if signal == "Close_short":
@@ -197,8 +196,8 @@ def backtest_and_visualise(
     start_at,
     stop_at,
     capital=10000,
-    commission=0,
-    slippage_perc=0,
+    commission=default_comission_cost,
+    slippage_perc=default_slippage_cost,
     level=logging.WARNING,
     time_buffer=250,
     progress_bar = False

@@ -44,3 +44,9 @@ def safe_mean(l):
     if len(l) == 0:
         return np.NaN
     return np.mean(l)
+
+def default_comission_cost(num_acciones, precio_compra, precio_venta):
+    return 0
+
+def default_slippage_cost(num_acciones, precio_compra, precio_venta):
+    return 0

@@ -13,11 +13,11 @@ class Trade:
         ticker,
         day,
         price,
-        num_actions=1,
-        stop_loss=1,
-        stop_loss_trailing=False,
-        commission=0,
-        slippage=0,
+        num_actions,
+        stop_loss,
+        stop_loss_trailing,
+        commission,
+        slippage,
     ):
 
         self.type = order_type
@@ -36,24 +36,21 @@ class Trade:
         self.commission = commission
         self.slippage = slippage
         self.num_days = 0
+        self.commission_cost = 0
+        self.slippage_cost = 0
 
     def close(self, day, price):
         self.close_day = day
         if self.type == "long":
             self.close_price = max(price, (1 - self.stop_loss) * self.up_price)
-            self.profit = (
-                self.num_actions
-                * (self.close_price - self.open_price - self.commission)
-                - self.slippage
-            )
+            self.comission_cost = self.commission(self.num_actions, self.open_price, self.close_price)
+            self.slippage_cost = self.slippage(self.num_actions, self.open_price, self.close_price)
+            self.profit = self.num_actions * (self.close_price - self.open_price) - self.comission_cost - self.slippage_cost
         else:
             self.close_price = min(price, (1 + self.stop_loss) * self.up_price)
-            self.profit = (
-                self.num_actions
-                * (self.open_price - self.close_price - self.commission)
-                - self.slippage
-            )
-
+            self.comission_cost = self.commission(self.num_actions, self.open_price, self.close_price)
+            self.slippage_cost = self.slippage(self.num_actions, self.open_price, self.close_price)
+            self.profit = self.num_actions * (self.open_price - self.close_price) - self.comission_cost - self.slippage_cost
         self.state = "CLOSED"
 
 
@@ -74,11 +71,11 @@ class TradeList:
         order_type,
         day,
         price,
-        num_actions=1,
-        stop_loss=1,
-        stop_loss_trailing=False,
-        commission=0,
-        slippage=0,
+        num_actions,
+        stop_loss,
+        stop_loss_trailing,
+        commission,
+        slippage,
     ):
         self.trade_index += 1
         trade = Trade(
@@ -118,8 +115,7 @@ class TradeList:
         factor  = lambda t: 1.0 if t.type == "long" else -1.0
         open_price = (
             lambda trade, p: trade.num_actions
-            * factor(trade) * (p - trade.open_price - trade.commission)
-            - trade.slippage
+            * factor(trade) * (p - trade.open_price) - trade.commission_cost - trade.slippage_cost
         )
 
         if trade_type == "all":
