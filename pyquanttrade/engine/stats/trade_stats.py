@@ -26,26 +26,26 @@ class TradeSummaryStats:
         # split long win, long lose, short win and short lose trades for further analysis.
         long_win_trades = [
             trade
-            for k, trade in trade_list.trades_closed.items()
+            for _, trade in trade_list.trades_closed.items()
             if trade.profit >= 0
             if trade.type == "long"
         ]
         long_lose_trades = [
             trade
-            for k, trade in trade_list.trades_closed.items()
+            for _, trade in trade_list.trades_closed.items()
             if trade.profit < 0
             if trade.type == "long"
         ]
 
         short_win_trades = [
             trade
-            for k, trade in trade_list.trades_closed.items()
+            for _, trade in trade_list.trades_closed.items()
             if trade.profit >= 0
             if trade.type == "short"
         ]
         short_lose_trades = [
             trade
-            for k, trade in trade_list.trades_closed.items()
+            for _, trade in trade_list.trades_closed.items()
             if trade.profit < 0
             if trade.type == "short"
         ]
@@ -407,6 +407,15 @@ class TradeSummaryStats:
         self.long_trades['recovery ratio'] = safe_div(net_long, l_max_drawn_down)
         self.short_trades['recovery ratio'] = safe_div(net_short, s_max_drawn_down)
 
+        self.all_trades['avg_commission_cost'] = safe_mean([trade.commission_cost for _,trade in trade_list.trades_closed.items()])
+        self.long_trades['avg_commission_cost'] = safe_mean([trade.commission_cost for _,trade in trade_list.trades_closed.items() if trade.type == 'long'])
+        self.short_trades['avg_commission_cost'] = safe_mean([trade.commission_cost for _,trade in trade_list.trades_closed.items() if trade.type == 'short'])
+
+        self.all_trades['avg_slippage_cost'] = safe_mean([trade.slippage_cost for _,trade in trade_list.trades_closed.items()])
+        self.long_trades['avg_slippage_cost'] = safe_mean([trade.slippage_cost for _,trade in trade_list.trades_closed.items() if trade.type == 'long'])
+        self.short_trades['avg_slippage_cost'] = safe_mean([trade.slippage_cost for _,trade in trade_list.trades_closed.items() if trade.type == 'short'])
+
+
     def toDataFrame(self):
         idx = [
             "Num of trades",
@@ -430,6 +439,8 @@ class TradeSummaryStats:
             "Profit expectancy",
             "MaxDD",
             "Recovery Ratio",
+            "Average commission cost",
+            "Average slippage cost"
         ]
 
         data = {
