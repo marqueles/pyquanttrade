@@ -43,14 +43,14 @@ class Trade:
         self.close_day = day
         if self.type == "long":
             self.close_price = max(price, (1 - self.stop_loss) * self.up_price)
-            self.comission_cost = self.commission(self.num_actions, self.open_price, self.close_price)
+            self.commission_cost = self.commission(self.num_actions, self.open_price, self.close_price)
             self.slippage_cost = self.slippage(self.num_actions, self.open_price, self.close_price)
-            self.profit = self.num_actions * (self.close_price - self.open_price) - self.comission_cost - self.slippage_cost
+            self.profit = self.num_actions * (self.close_price - self.open_price) - self.commission_cost - self.slippage_cost
         else:
             self.close_price = min(price, (1 + self.stop_loss) * self.up_price)
-            self.comission_cost = self.commission(self.num_actions, self.open_price, self.close_price)
+            self.commission_cost = self.commission(self.num_actions, self.open_price, self.close_price)
             self.slippage_cost = self.slippage(self.num_actions, self.open_price, self.close_price)
-            self.profit = self.num_actions * (self.open_price - self.close_price) - self.comission_cost - self.slippage_cost
+            self.profit = self.num_actions * (self.open_price - self.close_price) - self.commission_cost - self.slippage_cost
         self.state = "CLOSED"
 
 

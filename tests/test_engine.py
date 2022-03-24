@@ -25,4 +25,6 @@ def test_backtest_commission_slippage():
     def commission(num_actions, open_price, close_price):
         return 0.01 * num_actions * (open_price + close_price)
 
-    backtest(test_policy_2,"TSLA", "2012-01-01", "2021-01-01", commission=commission, slippage_perc=slippage)
+    result,_ = backtest(test_policy_2,"TSLA", "2012-01-01", "2021-01-01", commission=commission, slippage_perc=slippage)
+    summary_result = result.describe(True)
+    assert summary_result
