@@ -18,3 +18,8 @@ def test_indicators():
     greater_than_data = indicators.greater_than(test_func_1,test_func_2)('2010-12-10',None,None,data)
     assert  cross_of_values_data is not None
     assert greater_than_data is not None
+
+def test_rsi_2():
+    data = marketData.get_data("AAPL", "2010-01-01", "2021-01-01")
+    test_func = functions.RSI_2()(data)
+    assert test_func is None

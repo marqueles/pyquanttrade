@@ -225,8 +225,9 @@ def backtest_and_visualise(
             data.loc[trade.close_day,'signals'] = 'Close_short'
 
     
-
+    row, col = None, None
     if len(policy.second_plot_functions) > 0 :
+        row, col = 1, 1
         fig = make_subplots(rows = 2, cols = 1, shared_xaxes=True)
         for elem in policy.second_plot_functions:
             if elem in data.columns:
@@ -238,6 +239,6 @@ def backtest_and_visualise(
     plot_activity_list(data, fig)
     for elem in policy.plot_functions:
         if elem in data.columns:
-            fig.add_trace(go.Scatter(x = data.index, y = data[elem], mode='lines', name=elem, line={'width':1}), row = 1, col = 1)
+            fig.add_trace(go.Scatter(x = data.index, y = data[elem], mode='lines', name=elem, line={'width':1}), row = row, col = col)
 
     return result, fig

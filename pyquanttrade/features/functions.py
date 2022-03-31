@@ -14,6 +14,7 @@ To build a function not included in the package, use the following template::
 """
 
 import numpy as np
+import pandas as pd
 
 def line(value):
     """
@@ -964,27 +965,20 @@ def RSI(days):
     :param days: Window size
     :type days: int
     """
-    def f():
-        def g(x):
-            AU = x[x > 0].sum()
-            AD = -x[x < 0].sum()
-            if AD == 0:
-                return 100
-            else:
-                RS = AU / AD
-                return 100 - (100 / (1 + RS))
-
-        return g
-
     def return_function(data):
-        column_name = f"RSI_{days}"
+        column_name = f"RSI_{days}_2"
         if column_name not in data.columns:
             mom_name = momentum()(data).name
-            data[column_name] = (
-                data[mom_name].rolling(window=days).apply(f(), raw=False)
-            )
+            data['positive_momentum_ma'] = 0
+            data.loc[data[mom_name] > 0,'positive_momentum_ma'] = data[data[mom_name] > 0][mom_name]
+            data['negative_momentum_ma'] = 0
+            data.loc[data[mom_name] < 0,'negative_momentum_ma'] = data[data[mom_name] < 0][mom_name]
+            data['AU'] = 0
+            data['AD'] = 0
+            for i in range(1,len(data)): data.loc[data.index[i], 'AU'] = (data.loc[data.index[i-1],'AU']*13 + data.loc[data.index[i],'positive_momentum_ma'])/14 
+            for i in range(1,len(data)): data.loc[data.index[i], 'AD'] = (data.loc[data.index[i-1],'AD']*13 + data.loc[data.index[i],'negative_momentum_ma'])/14 
+            data[column_name] = 100 - 100/(1 + data['AU']/(-data['AD']))
         return data[column_name].copy()
-
     return return_function
 
 
