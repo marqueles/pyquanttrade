@@ -966,7 +966,7 @@ def RSI(days):
     :type days: int
     """
     def return_function(data):
-        column_name = f"RSI_{days}_2"
+        column_name = f"RSI_{days}"
         if column_name not in data.columns:
             mom_name = momentum()(data).name
             data['positive_momentum_ma'] = 0
