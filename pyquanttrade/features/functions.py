@@ -522,6 +522,26 @@ def lower_keltner_channel(days=10):
 
     return return_function
 
+def modified_upper_keltner_channel(center_days = 10, atr_days = 10, k = 2):
+    def return_function(data):
+        column_name = f"upper_modified_keltner"
+        if column_name not in data.columns:
+            center = exponential_smoothing(days_to_constant(center_days))(data)
+            distance = average_true_range(atr_days)(data)
+            data[column_name] = center + k*distance
+        return data[column_name].copy()
+    return return_function
+
+def modified_lower_keltner_channel(center_days = 10, atr_days = 10, k = 2):
+    def return_function(data):
+        column_name = f"lower_modified_keltner"
+        if column_name not in data.columns:
+            center = exponential_smoothing(days_to_constant(center_days))(data)
+            distance = average_true_range(atr_days)(data)
+            data[column_name] = center - k*distance
+        return data[column_name].copy()
+    return return_function
+
 
 def upper_percentage_band(c, band_target, center_target):
     """
@@ -854,8 +874,11 @@ def average_true_range(days=10, target="close"):
         high_col_name = f"high{target[5:]}"
         low_col_name = f"low{target[5:]}"
         if column_name not in data.columns:
-            true_range = data[high_col_name] - data[low_col_name]
-            data[column_name] = true_range.rolling(days, min_periods=1).mean()
+            data['true_range'] = data[high_col_name] - data[low_col_name]
+            data['low_vs_close'] = abs(data[low_col_name] - data['close'].shift(1))
+            data['high_vs_close'] = abs(data[high_col_name] - data['close'].shift(1))
+            data['max_true_range'] = data[['true_range', 'low_vs_close', 'high_vs_close']].max(axis=1)
+            data[column_name] = data['max_true_range'].rolling(days, min_periods=1).mean()
         return data[column_name].copy()
 
     return return_function
@@ -952,6 +975,7 @@ def percentageR(days):
             for i in range(len(data)):
                 if i >= days - 1:
                     data.iloc[i, column_index] = f(data.iloc[i - days + 1 : i + 1])
+            data[column_name] = data[column_name] * -100
         return data[column_name].copy()
 
     return return_function

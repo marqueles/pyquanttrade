@@ -10,6 +10,7 @@ __version__ = "1"
 import logging
 from datetime import datetime, timedelta
 from pyquanttrade import market
+from pyquanttrade.features.functions import third_order_exponential_smoothing
 from pyquanttrade.market import marketData
 from pyquanttrade.engine.trade import TradeList
 from pyquanttrade.engine.test_result import TestResult
@@ -224,15 +225,24 @@ def backtest_and_visualise(
             data.loc[trade.open_day,'signals'] = 'Sell_short'
             data.loc[trade.close_day,'signals'] = 'Close_short'
 
-    
+    if len(policy.fourth_plot_functions)>0 : rows = 4
+    elif len(policy.third_plot_functions)>0 : rows = 3
+    elif len(policy.second_plot_functions)>0 : rows = 2
+    else: rows = 1
+    plot_dict = {2: policy.second_plot_functions, 3: policy.third_plot_functions, 4: policy.fourth_plot_functions}
+
+
     row, col = None, None
-    if len(policy.second_plot_functions) > 0 :
+    if rows > 0 :
         row, col = 1, 1
-        fig = make_subplots(rows = 2, cols = 1, shared_xaxes=True)
-        for elem in policy.second_plot_functions:
-            if elem in data.columns:
-                fig.add_trace(go.Scatter(x = data.index, y = data[elem], mode='lines', name=elem, line={'width':1}), row = 2, col = 1)
+        fig = make_subplots(rows = rows, cols = 1, shared_xaxes=True)
+        if rows > 2: fig.update_layout(autosize=True, height=600)
+        for i in range(2,rows+1):
+            for elem in plot_dict[i]:
+                if elem in data.columns:
+                    fig.add_trace(go.Scatter(x = data.index, y = data[elem], mode='lines', name=elem, line={'width':1}), row = i, col = 1)
         
+
     else: 
         fig = go.Figure()
 
