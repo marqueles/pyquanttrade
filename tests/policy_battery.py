@@ -7,7 +7,7 @@ from pyquanttrade.features.functions import (
     get_column,
     days_to_constant
 )
-from pyquanttrade.policy import Policy
+from pyquanttrade.Policy import Policy
 
 from pyquanttrade.features.indicators import cross_of_values
 

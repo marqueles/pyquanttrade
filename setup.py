@@ -22,6 +22,7 @@ setuptools.setup(
         "python-decouple",
         'scipy',
         'plotly',
-        'tqdm'
+        'tqdm',
+        'matplotlib'
     ],
 )

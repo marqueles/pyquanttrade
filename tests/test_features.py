@@ -1,3 +1,4 @@
+from cgi import test
 from pyquanttrade.features import functions, indicators
 from pyquanttrade.market import marketData
 
@@ -22,4 +23,9 @@ def test_indicators():
 def test_rsi_2():
     data = marketData.get_data("AAPL", "2010-01-01", "2021-01-01")
     test_func = functions.RSI_2()(data)
+    assert test_func is None
+
+def test_ADX():
+    data = marketData.get_data("AAPL", "2010-01-01", "2021-01-01")
+    test_func = functions.ADX()(data)
     assert test_func is None
